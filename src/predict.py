@@ -1,15 +1,19 @@
+## Import statements
+
 import argparse
 from typing import Any
 import numpy as np
 from numpy.typing import NDArray
 from joblib import load
 
+## Prediction functions
 
+## Load model
 def load_model(model_path: str) -> Any:
     """Load and return a trained classifier."""
     return load(model_path)
 
-
+## Predict texts
 def predict_texts(
         classifier: Any,
         input_texts: list[str]
@@ -23,7 +27,7 @@ def predict_texts(
         probs = [None] * len(input_texts)
     return preds.astype(int).tolist(), probs
 
-
+## Format prediction lines
 def format_prediction_lines(
         texts: list[str],
         preds: list[int],
@@ -38,7 +42,7 @@ def format_prediction_lines(
             lines.append(f"{pred}\t{prob:.3f}\t{text}")
     return lines
 
-
+## Main function
 def main(
         model_path: str,
         input_texts: list[str]
@@ -48,7 +52,7 @@ def main(
     for line in format_prediction_lines(input_texts, preds, probs):
         print(line)
 
-
+## CLI entry point
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", default="models/sentiment.joblib")

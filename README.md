@@ -16,7 +16,7 @@ pip install -r requirements.txt
 python src/train.py --data data/train.csv --out models/sentiment.joblib
 
 ## Predict
-python src/predict.py "I absolutely loved it" "That was awful"
+python src/predict.py "I absolutely loved it!" "That was awful!"
 # Output format: label  probability  text
 # Example:
 # 1    0.982    I absolutely loved it
