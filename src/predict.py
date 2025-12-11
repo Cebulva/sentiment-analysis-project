@@ -1,4 +1,4 @@
-## Import statements
+## Imports statements
 
 import argparse
 from typing import Any
