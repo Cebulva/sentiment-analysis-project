@@ -37,7 +37,8 @@ jobs:
             
             - name: Run the predict script
               run: |
-                python src/predict.py
+                # The script requires at least one positional argument for 'text'
+                python src/predict.py --model models/sentiment.joblib "This is a test text for CI"
 
     run-training:
         runs-on: ubuntu-latest
@@ -56,7 +57,7 @@ jobs:
                 python -m pip install --upgrade pip
                 pip install -r requirements.txt
             
-            - name: Run the predict script
+            - name: Run the training script
               run: |
                 python src/train.py
             
