@@ -8,15 +8,16 @@ from joblib import load
 
 ## Prediction functions
 
+
 ## Load model
 def load_model(model_path: str) -> Any:
     """Load and return a trained classifier."""
     return load(model_path)
 
+
 ## Predict texts
 def predict_texts(
-        classifier: Any,
-        input_texts: list[str]
+    classifier: Any, input_texts: list[str]
 ) -> tuple[list[int], list[float | None]]:
     """Return labels and probability-of-positive for each text."""
     preds: NDArray[Any] = classifier.predict(input_texts)
@@ -27,11 +28,10 @@ def predict_texts(
         probs = [None] * len(input_texts)
     return preds.astype(int).tolist(), probs
 
+
 ## Format prediction lines
 def format_prediction_lines(
-        texts: list[str],
-        preds: list[int],
-        probs: list[float | None]
+    texts: list[str], preds: list[int], probs: list[float | None]
 ) -> list[str]:
     """Return tab-separated CLI output lines for each input text."""
     lines: list[str] = []
@@ -42,15 +42,14 @@ def format_prediction_lines(
             lines.append(f"{pred}\t{prob:.3f}\t{text}")
     return lines
 
+
 ## Main function
-def main(
-        model_path: str,
-        input_texts: list[str]
-) -> None:
+def main(model_path: str, input_texts: list[str]) -> None:
     classifier = load_model(model_path)
     preds, probs = predict_texts(classifier, input_texts)
     for line in format_prediction_lines(input_texts, preds, probs):
         print(line)
+
 
 ## CLI entry point
 if __name__ == "__main__":
