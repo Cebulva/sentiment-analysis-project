@@ -1,5 +1,6 @@
 import pytest
-from src.predict import predict_texts, load_model
+
+from src.predict import load_model, predict_texts
 
 # Define the expected labels
 POSITIVE_LABEL = 1
@@ -34,14 +35,15 @@ def trained_classifier():
 
 def test_sanity_check_positive_sentence(trained_classifier):
     """
-    Sanity Check 1: Passes an obviously postive sentence and asserts the prediction is Positive (1).
-    This confirms the model is loading and making reasonable predictions.
+    Sanity Check 1: Passes an obviously postive sentence and asserts the prediction is
+    Positive (1). This confirms the model is loading and making reasonable predictions.
     """
 
     expected_pred = POSITIVE_LABEL
 
     input_text = [
-        "I love this movie, it was fantastic and inspiring! The best thing I've seen all year."
+        "I love this movie, it was fantastic and inspiring!"
+        "The best thing I've seen all year."
     ]
 
     preds, probs = predict_texts(classifier=trained_classifier, input_texts=input_text)
@@ -55,14 +57,15 @@ def test_sanity_check_positive_sentence(trained_classifier):
 
 def test_sanity_check_negative_sentence(trained_classifier):
     """
-    Sanity Check 2: Passes an obviously negative sentence and asserts the prediction is Negative (0).
-    This confirms the prediction pipeline's handling of the negative class.
+    Sanity Check 2: Passes an obviously negative sentence and asserts the prediction is 
+    Negative (0). This confirms the prediction pipeline's handling the negative class.
     """
 
     expected_pred = NEGATIVE_LABEL
 
     input_text = [
-        "The service was terrible and the food was awful. I will never come back to this restaurant."
+        "The service was terrible and the food was awful."
+        "I will never come back to this restaurant."
     ]
 
     preds, probs = predict_texts(classifier=trained_classifier, input_texts=input_text)

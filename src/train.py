@@ -1,12 +1,13 @@
 ## Import statements
 
-import pandas as pd
 import argparse
 import os
+
+import pandas as pd
 from joblib import dump
-from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline, make_pipeline
 
 ## Helper Functions
