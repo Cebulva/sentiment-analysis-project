@@ -57,7 +57,7 @@ def test_sanity_check_positive_sentence(trained_classifier):
 
 def test_sanity_check_negative_sentence(trained_classifier):
     """
-    Sanity Check 2: Passes an obviously negative sentence and asserts the prediction is 
+    Sanity Check 2: Passes an obviously negative sentence and asserts the prediction is
     Negative (0). This confirms the prediction pipeline's handling the negative class.
     """
 
