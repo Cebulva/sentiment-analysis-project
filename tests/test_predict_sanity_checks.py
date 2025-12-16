@@ -1,5 +1,4 @@
 import pytest
-from joblib import load
 from src.predict import predict_texts, load_model
 
 # Define the expected labels
